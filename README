@@ -1,0 +1,17 @@
+To build the project, make sure you have gradle (1.11 on my machine) installed and in your PATH.
+
+If merely typing gradle gives you an error from this directory, it is likely that you have missed one or both of the required steps.
+
+Assuming you have gradle installed and in your PATH, type 
+
+gradle tasks
+
+to see a list of available tasks
+
+Type
+
+gradle package
+
+to build a war. You can find the war in the build/libs directory.
+
+
