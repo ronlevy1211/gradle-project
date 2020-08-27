@@ -2,4 +2,4 @@ FROM tomcat:8.0
 
 MAINTAINER Ron Levy
 
-COPY ./webapp.war /usr/local/tomcat/webapps
+COPY ./gradle-project/build/libs/gradle-project.war /usr/local/tomcat/webapps
