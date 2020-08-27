@@ -63,7 +63,7 @@ node('testpod') {
         container('docker'){
             sh """
                 docker build -t ronlevy1211/hello-world ./gradle-project
-                echo '{Docker_user} {Docker_pass}'
+                echo '${Docker_user} ${Docker_pass}'
                 """
         }
     }
