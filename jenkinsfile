@@ -34,7 +34,7 @@ node('gradlepod') {
     }
 }*/
 podTemplate(label: 'testpod',containers: [
-    containerTemplate(name: 'gradletest', image: 'git', ttyEnabled: true, command: 'cat')
+    containerTemplate(name: 'gradletest', image: 'alpine/git', ttyEnabled: true, command: 'cat')
   ])
   {
 node('testpod') {
