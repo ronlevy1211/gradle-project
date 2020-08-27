@@ -7,7 +7,7 @@
   volumes: [
     hostPathVolume(mountPath: '/var/run/docker.sock', hostPath: '/var/run/docker.sock')
   ] 
-  )  */
+  )  
 node('gradlepod') {
     /* 
     stage('clone gradle project repo'){
@@ -16,14 +16,14 @@ node('gradlepod') {
                 git clone https://github.com/ronlevy1211/gradle-project.git
                 """
         }
-    }*/ 
+    }
     stage('Build Artifact'){
         container('gradle'){
             sh """
                 gradle -v
                 """
         }
-    }/* 
+    }
     stage('Push to DockerHub'){
         container('docker'){
             sh """
@@ -31,5 +31,19 @@ node('gradlepod') {
                 docker push ronlevy1211/hello-world
                 """
         }
-    }*/
+    }
+}*/
+podTemplate(label: 'testpod',containers: [
+    containerTemplate(name: 'gradletest', image: 'gradle', ttyEnabled: true, command: 'cat')
+  ])
+  {
+node('testpod') {
+    stage('Start Zip Build'){
+        container('gradletest'){
+            sh """
+                gradle -v
+                """
+        }
+    }
+}
 }
