@@ -57,7 +57,7 @@ node('testpod') {
     stage('Test'){
         container('centos'){
             sh """
-                find / -name *.war
+                ll
                 """
         }
     }
