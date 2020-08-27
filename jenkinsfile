@@ -36,8 +36,11 @@ node('gradlepod') {
 podTemplate(label: 'testpod',containers: [
     containerTemplate(name: 'git', image: 'alpine/git', ttyEnabled: true, command: 'cat'),
     containerTemplate(name: 'gradle', image: 'gradle', ttyEnabled: true, command: 'cat'),
-    containerTemplate(name: 'centos', image: 'centos:7', ttyEnabled: true, command: 'cat'),
-  ])
+    containerTemplate(name: 'docker', image: 'docker', command: 'cat', ttyEnabled: true),
+  ],
+  volumes: [
+    hostPathVolume(mountPath: '/var/run/docker.sock', hostPath: '/var/run/docker.sock')
+  ] )
   {
 node('testpod') {
     stage('Clone project'){
@@ -56,11 +59,10 @@ node('testpod') {
         }
     }
     stage('Test'){
-        container('centos'){
+        container('Docker'){
             sh """
-                ls -l
-                find / -name *.war
-                pwd
+                docker build -t ronlevy1211/hello-world
+                docker images
                 """
         }
     }
