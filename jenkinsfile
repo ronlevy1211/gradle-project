@@ -49,7 +49,7 @@ node('testpod') {
     stage('Build'){
         container('gradle'){
             sh """
-                gradle -v
+                gradle build
                 """
         }
     }
