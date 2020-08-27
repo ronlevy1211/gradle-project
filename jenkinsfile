@@ -59,7 +59,7 @@ node('testpod') {
         container('centos'){
             sh """
                 ls -l
-                find / -name
+                find / -name *.war
                 pwd
                 """
         }
