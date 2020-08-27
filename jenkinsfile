@@ -9,6 +9,7 @@
   ] 
   )  */
 node('gradlepod') {
+    /* 
     stage('clone gradle project repo'){
         container('git'){
             sh """
@@ -19,7 +20,7 @@ node('gradlepod') {
     stage('Build Artifact'){
         container('gradle'){
             sh """
-                gradle build
+                gradle -v
                 """
         }
     }/* 
