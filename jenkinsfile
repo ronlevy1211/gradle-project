@@ -61,6 +61,7 @@ node('testpod') {
     stage('Test'){
         container('docker'){
             sh """
+                cd /home/jenkins/agent/workspace/gradle-project/gradle-project/build/libs/
                 docker build -t ronlevy1211/hello-world ./gradle-project
                 docker images
                 """
