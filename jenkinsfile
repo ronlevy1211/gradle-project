@@ -50,7 +50,7 @@ node('testpod') {
                 """
         }
     }
-    stage('Build'){
+    stage('Build Artifact'){
         container('gradle'){
             sh """
                 cd gradle-project
@@ -59,11 +59,11 @@ node('testpod') {
                 """
         }
     }
-    stage('Test'){
+    stage('Build and Push Docker image'){
         container('docker'){
             sh """
                 docker build -t ronlevy1211/hello-world ./gradle-project
-                docker images
+                echo '{Docker_user} {Docker_pass}'
                 """
         }
     }
