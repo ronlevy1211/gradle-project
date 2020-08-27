@@ -22,7 +22,7 @@ node('gradlepod') {
                 """
         }
     }
-    /* 
+    /* e
     stage('Push to DockerHub'){
         container('docker'){
             sh """
