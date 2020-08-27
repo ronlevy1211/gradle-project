@@ -61,7 +61,8 @@ node('testpod') {
     stage('Test'){
         container('docker'){
             sh """
-                docker build -t ronlevy1211/hello-world .
+                #docker build -t ronlevy1211/hello-world .
+                find / -name Dockerfile
                 docker images
                 """
         }
