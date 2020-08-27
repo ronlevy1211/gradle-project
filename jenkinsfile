@@ -50,6 +50,7 @@ node('testpod') {
     stage('Build'){
         container('gradle'){
             sh """
+                cd gradle-project
                 gradle build
                 """
         }
@@ -58,6 +59,7 @@ node('testpod') {
         container('centos'){
             sh """
                 ls -l
+                find / -name *.war
                 """
         }
     }
