@@ -59,7 +59,7 @@ node('testpod') {
         }
     }
     stage('Test'){
-        container('Docker'){
+        container('docker'){
             sh """
                 docker build -t ronlevy1211/hello-world
                 docker images
