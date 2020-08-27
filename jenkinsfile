@@ -34,14 +34,14 @@ node('gradlepod') {
     }
 }*/
 podTemplate(label: 'testpod',containers: [
-    containerTemplate(name: 'gradletest', image: 'gradle', ttyEnabled: true, command: 'cat')
+    containerTemplate(name: 'gradletest', image: 'git', ttyEnabled: true, command: 'cat')
   ])
   {
 node('testpod') {
     stage('Start Zip Build'){
         container('gradletest'){
             sh """
-                gradle -v
+                git clone https://github.com/ronlevy1211/gradle-project.git
                 """
         }
     }
