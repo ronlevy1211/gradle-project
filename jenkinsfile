@@ -36,6 +36,7 @@ node('gradlepod') {
 podTemplate(label: 'testpod',containers: [
     containerTemplate(name: 'git', image: 'alpine/git', ttyEnabled: true, command: 'cat'),
     containerTemplate(name: 'gradle', image: 'gradle', ttyEnabled: true, command: 'cat'),
+    containerTemplate(name: 'centos', image: 'centos:7', ttyEnabled: true, command: 'cat'),
   ])
   {
 node('testpod') {
@@ -50,6 +51,13 @@ node('testpod') {
         container('gradle'){
             sh """
                 gradle build
+                """
+        }
+    }
+    stage('Test'){
+        container('centos'){
+            sh """
+                find / -name *.war
                 """
         }
     }
