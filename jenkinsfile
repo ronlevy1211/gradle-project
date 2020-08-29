@@ -40,8 +40,8 @@ node('testpod') {
                 ######################
                 ##PUSH TO DOCKERHUB###
                 ######################
-                docker login --username ${Docker_user} --password ${Docker_pass} 
-                docker push ronlevy1211/hello-world
+                #docker login --username ${Docker_user} --password ${Docker_pass} 
+                #docker push ronlevy1211/hello-world
                 """
             docker.withRegistry("https://hub.docker.com","DockerCred"){
                 def image = docker.build("ronlevy1211/hello-world")
