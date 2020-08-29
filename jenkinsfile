@@ -11,9 +11,9 @@ node('testpod') {
     stage('Clone project'){
         container('git'){
             sh """
-                echo ####################
-                echo ###CLONE PROJECT####
-                echo ####################
+                echo ********************
+                echo ***CLONE PROJECT****
+                echo ********************
                 git clone https://github.com/ronlevy1211/gradle-project.git
                 """
         }
@@ -21,9 +21,9 @@ node('testpod') {
     stage('Build Artifact'){
         container('gradle'){
             sh """
-                echo ###################
-                echo ####START BUILD####
-                echo ###################
+                echo *******************
+                echo ****START BUILD****
+                echo *******************
                 cd gradle-project
                 gradle build
                 cp /home/jenkins/agent/workspace/gradle-project/gradle-project/build/libs/gradle-project.war ./gradle-project.war
