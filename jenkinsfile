@@ -10,10 +10,10 @@ podTemplate(label: 'testpod',containers: [
 node('testpod') {
     stage('Clone project'){
         container('git'){
+            ####################
+            ###CLONE PROJECT####
+            ####################
             sh """
-                ####################
-                ###CLONE PROJECT####
-                ####################
                 git clone https://github.com/ronlevy1211/gradle-project.git
                 """
         }
