@@ -44,7 +44,7 @@ node('testpod') {
                 #docker push ronlevy1211/hello-world
                 """
             docker.withRegistry("https://registry.hub.docker.com","DockerCred"){
-                def image = docker.build("ronlevy1211/hello-world")
+                def image = docker.image("ronlevy1211/hello-world")
                 image.push()
             }
         }
