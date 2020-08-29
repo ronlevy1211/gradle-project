@@ -22,7 +22,7 @@ node('testpod') {
         container('gradle'){
             sh """
                 ###################
-                ##START BUILD######
+                ####START BUILD####
                 ###################
                 cd gradle-project
                 gradle build
@@ -40,8 +40,6 @@ node('testpod') {
                 ######################
                 ##PUSH TO DOCKERHUB###
                 ######################
-                #docker login --username ${Docker_user} --password ${Docker_pass} 
-                #docker push ronlevy1211/hello-world
                 """
             docker.withRegistry("https://registry.hub.docker.com","DockerCred"){
                 def image = docker.image("ronlevy1211/hello-world")
