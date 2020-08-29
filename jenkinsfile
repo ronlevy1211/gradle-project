@@ -11,6 +11,9 @@ node('testpod') {
     stage('Clone project'){
         container('git'){
             sh """
+                ####################
+                ###CLONE PROJECT####
+                ####################
                 git clone https://github.com/ronlevy1211/gradle-project.git
                 """
         }
@@ -18,6 +21,9 @@ node('testpod') {
     stage('Build Artifact'){
         container('gradle'){
             sh """
+                ###################
+                ##START BUILD######
+                ###################
                 cd gradle-project
                 gradle build
                 cp /home/jenkins/agent/workspace/gradle-project/gradle-project/build/libs/gradle-project.war ./gradle-project.war
@@ -27,10 +33,19 @@ node('testpod') {
     stage('Build and Push Docker image'){
         container('docker'){
             sh """
+                ######################
+                ##START DOCKER BUILD##
+                ######################
                 docker build -t ronlevy1211/hello-world ./gradle-project
+                ######################
+                ##PUSH TO DOCKERHUB###
+                ######################
                 docker login --username ${Docker_user} --password ${Docker_pass} 
                 docker push ronlevy1211/hello-world
                 """
+            docker.withRegistry("https://hub.docker.com","DockerCred"){
+                def image = docker.build("ronlevy1211/hello-world")
+            }
         }
     }
 }
